@@ -5,7 +5,6 @@
 ## 基础
 
 * [安装部署](ji-chu/kuai-su-ru-men/README.md)
-  * [Minishift](ji-chu/kuai-su-ru-men/minishift.md)
-  * [OC](ji-chu/kuai-su-ru-men/oc.md)
+  * [单机部署](ji-chu/kuai-su-ru-men/dan-ji-bu-shu.md)
 * [Untitled](ji-chu/untitled.md)
 
