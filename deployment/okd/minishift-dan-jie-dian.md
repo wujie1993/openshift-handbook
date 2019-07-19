@@ -1,0 +1,2 @@
+# Minishift单节点
+
