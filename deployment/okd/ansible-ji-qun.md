@@ -11,8 +11,8 @@
 | 节点名称 | IP地址 | ansible | master | node |
 | :--- | :--- | :--- | :--- | :--- |
 | okd-0 | 192.168.149.129 | yes | yes | yes |
-| okd-1 | 192.168.149.130 | no | yes | yes |
-| okd-2 | 192.168.149.131 | no | yes | yes |
+| okd-1 | 192.168.149.130 | no | no | yes |
+| okd-2 | 192.168.149.131 | no | no | yes |
 
 首先修改每个节点的主机名
 
@@ -86,7 +86,17 @@ systemctl enable docker
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-进入引导节点，配置epel源并安装ansible
+在master节点安装openjdk与python-passlib
+
+{% code-tabs %}
+{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
+```text
+yum install -y java-1.8.0-openjdk-headless python-passlib
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+在引导节点上配置epel源并安装ansible
 
 {% code-tabs %}
 {% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
@@ -122,14 +132,14 @@ os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 # Router服务的默认域名后缀
 openshift_master_default_subdomain=apps.oc.local
 # 配置docker日志的滚动清理策略和非加密镜像仓库地址
-openshift_docker_options=OPTIONS='--log-driver json-file --insecure-registry=172.30.0.0/16 --selinux-enabled --log-opt max-size=1M --log-opt max-file=3'
+openshift_docker_options='--registry-mirror=https://53mhb806.mirror.aliyuncs.com --log-driver json-file --insecure-registry=172.30.0.0/16 --log-opt max-size=1M --log-opt max-file=3'
 
 # 安装Hawkular,启用metrics
 openshift_metrics_install_metrics=true
 openshift_metrics_hawkular_hostname=hawkular-metrics.oc.local
 
 # 配置认证方式
-openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
 
 [masters]
 okd-0
@@ -147,7 +157,7 @@ okd-2 openshift_schedulable=true openshift_node_labels="{'region': 'infra', 'zon
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-执行安装前检查
+安装预检查
 
 {% code-tabs %}
 {% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
@@ -156,4 +166,20 @@ ansible-playbook playbooks/prerequisites.yml
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+安装集群
+
+{% code-tabs %}
+{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
+```text
+ansible-playbook playbooks/deploy_cluster.yml
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+{% hint style="info" %}
+必须保证安装脚本完全执行通过，如果出现错误可以在排查完错误后重复执行
+{% endhint %}
+
+
 
