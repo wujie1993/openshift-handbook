@@ -8,11 +8,11 @@
 
 规划安装3台节点，三个都作为主节点和计算节点
 
-| 节点名称 | IP地址 | ansible | master | node |
-| :--- | :--- | :--- | :--- | :--- |
-| okd-0 | 192.168.149.129 | yes | yes | yes |
-| okd-1 | 192.168.149.130 | no | no | yes |
-| okd-2 | 192.168.149.131 | no | no | yes |
+| 节点名称 | IP地址 | ansible | master | node | infra | compute |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| okd-0 | 192.168.149.129 | yes | yes | yes | no | no |
+| okd-1 | 192.168.149.130 | no | no | yes | yes | no |
+| okd-2 | 192.168.149.131 | no | no | yes | no | yes |
 
 首先修改每个节点的主机名
 
@@ -137,6 +137,7 @@ openshift_docker_options='--registry-mirror=https://53mhb806.mirror.aliyuncs.com
 # 安装Hawkular,启用metrics
 openshift_metrics_install_metrics=true
 openshift_metrics_hawkular_hostname=hawkular-metrics.oc.local
+openshift_metrics_image_version
 
 # 配置认证方式
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
@@ -152,7 +153,7 @@ okd-2
 [nodes]
 okd-0 openshift_schedulable=true openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 okd-1 openshift_schedulable=true openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-okd-2 openshift_schedulable=true openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+okd-2 openshift_schedulable=true openshift_node_labels="{'zone': 'default'}"
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
