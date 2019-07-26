@@ -115,7 +115,7 @@ yum -y --enablerepo=epel install ansible pyOpenSSL
 由于openshift-ansible v3.9不支持ansible&gt;=2.8的版本，建议使用以下命令安装
 
 ```text
-https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.7.9-1.el7.ans.noarch.rpm pyOpenSSL -y
+yum install https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.7.9-1.el7.ans.noarch.rpm pyOpenSSL -y
 ```
 
 配置inventory
