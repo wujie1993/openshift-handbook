@@ -64,17 +64,6 @@ ssh-copy-id okd-1
 ssh-copy-id okd-2
 ```
 
-下载安装脚本（以v3.9为例）
-
-{% code-tabs %}
-{% code-tabs-item title="okd-0:/root/Downloads/ \#" %}
-```bash
-wget https://github.com/openshift/openshift-ansible/archive/openshift-ansible-3.9.90-1.tar.gz
-tar xvf openshift-ansible-3.9.90-1.tar.gz && cd openshift-ansible-openshift-ansible-3.9.90-1
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
 为每个节点安装并更新必要的依赖软件和docker
 
 {% code-tabs %}
@@ -117,6 +106,17 @@ yum -y --enablerepo=epel install ansible pyOpenSSL
 ```text
 yum install https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.7.9-1.el7.ans.noarch.rpm pyOpenSSL -y
 ```
+
+下载安装脚本
+
+{% code-tabs %}
+{% code-tabs-item title="okd-0:/root/Downloads/ \#" %}
+```bash
+wget https://github.com/openshift/openshift-ansible/archive/openshift-ansible-3.9.90-1.tar.gz
+tar xvf openshift-ansible-3.9.90-1.tar.gz && cd openshift-ansible-openshift-ansible-3.9.90-1
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 配置inventory
 
