@@ -420,6 +420,8 @@ ansible-playbook playbooks/openshift-grafana/config.yml
 ### EFK
 
 ```text
-
+ansible-playbook playbooks/openshift-logging/config.yml
 ```
+
+将kibana服务的router域名添加到infra节点的/etc/hosts或dnsmasq中
 
