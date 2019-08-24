@@ -106,7 +106,7 @@ systemctl enable docker
 在master节点安装openjdk与python-passlib
 
 {% code-tabs %}
-{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
+{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.99-1/ \#" %}
 ```text
 yum install -y java-1.8.0-openjdk-headless python-passlib
 ```
@@ -116,7 +116,7 @@ yum install -y java-1.8.0-openjdk-headless python-passlib
 在引导节点上安装ansible
 
 {% code-tabs %}
-{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
+{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.99-1/ \#" %}
 ```text
 yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
@@ -136,8 +136,8 @@ yum install https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansib
 {% code-tabs %}
 {% code-tabs-item title="okd-0:/root/Downloads/ \#" %}
 ```bash
-wget https://github.com/openshift/openshift-ansible/archive/openshift-ansible-3.9.90-1.tar.gz
-tar xvf openshift-ansible-3.9.90-1.tar.gz && cd openshift-ansible-openshift-ansible-3.9.90-1
+wget https://github.com/openshift/openshift-ansible/archive/openshift-ansible-3.9.99-1.tar.gz
+tar xvf openshift-ansible-3.9.99-1.tar.gz && cd openshift-ansible-openshift-ansible-3.9.99-1
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
@@ -195,7 +195,7 @@ okd-2 openshift_schedulable=true openshift_node_labels="{'zone': 'default'}"
 安装预检查
 
 {% code-tabs %}
-{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
+{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.99-1/ \#" %}
 ```text
 ansible-playbook playbooks/prerequisites.yml
 ```
@@ -205,7 +205,7 @@ ansible-playbook playbooks/prerequisites.yml
 安装集群
 
 {% code-tabs %}
-{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
+{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.99-1/ \#" %}
 ```text
 ansible-playbook playbooks/deploy_cluster.yml
 ```
@@ -406,7 +406,7 @@ okd-2 openshift_schedulable=true openshift_node_labels="{'zone': 'default'}"
 安装预检查
 
 {% code-tabs %}
-{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
+{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.99-1/ \#" %}
 ```text
 ansible-playbook playbooks/prerequisites.yml
 ```
@@ -416,7 +416,7 @@ ansible-playbook playbooks/prerequisites.yml
 安装集群
 
 {% code-tabs %}
-{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.90-1/ \#" %}
+{% code-tabs-item title="okd-0:/root/Downloads/openshift-ansible-openshift-ansible-3.9.99-1/ \#" %}
 ```text
 ansible-playbook playbooks/deploy_cluster.yml
 ```
