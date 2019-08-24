@@ -6,7 +6,31 @@
 
 ## 预配置
 
+### DNS
 
+在每台节点上，安装dnsmasq
+
+```text
+yum install -y dnsmasq
+```
+
+添加Router域名解析策略
+
+{% code-tabs %}
+{% code-tabs-item title="/etc/dnsmasq.d/external-hosts.conf" %}
+```text
+address=/.apps.oc.local/192.168.149.129
+address=/.apps.oc.local/192.168.149.130
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+启动dnsmasq并设置开机自启动
+
+```text
+systemctl start dnsmasq
+systemctl enable dnsmasq
+```
 
 ## 快速安装
 
@@ -407,21 +431,15 @@ ansible-playbook playbooks/deploy_cluster.yml
 ansible-playbook playbooks/openshift-prometheus/config.yml
 ```
 
-将prometheus服务的router域名添加到infra节点的/etc/hosts或dnsmasq中
-
 ### Grafana
 
 ```text
 ansible-playbook playbooks/openshift-grafana/config.yml
 ```
 
-将grafana服务的router域名添加到infra节点的/etc/hosts或dnsmasq中
-
 ### EFK
 
 ```text
 ansible-playbook playbooks/openshift-logging/config.yml
 ```
-
-将kibana服务的router域名添加到infra节点的/etc/hosts或dnsmasq中
 
