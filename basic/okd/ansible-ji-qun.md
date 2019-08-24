@@ -407,13 +407,15 @@ ansible-playbook playbooks/deploy_cluster.yml
 ansible-playbook playbooks/openshift-prometheus/config.yml
 ```
 
-### Grafana
+将prometheus服务的router域名添加到infra节点的/etc/hosts或dnsmasq中
 
-事先将grafana服务的router域名添加到/etc/hosts中
+### Grafana
 
 ```text
 ansible-playbook playbooks/openshift-grafana/config.yml
 ```
+
+将grafana服务的router域名添加到infra节点的/etc/hosts或dnsmasq中
 
 ### EFK
 
