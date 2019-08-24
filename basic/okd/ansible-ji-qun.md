@@ -399,3 +399,25 @@ ansible-playbook playbooks/deploy_cluster.yml
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+## 额外组件
+
+### Prometheus
+
+```text
+ansible-playbook playbooks/openshift-prometheus/config.yml
+```
+
+### Grafana
+
+事先将grafana服务的router域名添加到/etc/hosts中
+
+```text
+ansible-playbook playbooks/openshift-grafana/config.yml
+```
+
+### EFK
+
+```text
+
+```
+
